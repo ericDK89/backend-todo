@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import createUser from "../../prisma/user/create-user";
 
-const createUserController = async (req: Request, res: Response): Promise<Response> => {
+const createUserController = (req: Request, res: Response): Response => {
   const { name } = req.body
 
   createUser(name)
