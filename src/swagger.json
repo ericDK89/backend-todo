@@ -1,0 +1,61 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Todo Project - Express & Prisma",
+    "description": "This is an API to create user and todos",
+    "version": "1.0.0",
+    "contact": {
+      "email": "ericthr42@gmail.com"
+    }
+  },
+  "paths": {
+    "/user/create": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create a new user",
+        "description": "To create a new user, add the 'name' field in the request body.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": ["name"],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Username123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created user"
+          }
+        }
+      }
+    },
+    "/user/list/:username": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get user by username",
+        "description": "To list an user you need to add the username at the params",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/todo/create/:id": {
+      "post": {
+        "tags": ["Todo"],
+        "summary": "Create a todo for a user",
+        "description": "To create a todo you need to add a description at the body"
+      }
+    }
+  }
+}
