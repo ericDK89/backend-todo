@@ -1,12 +1,10 @@
 import { Request, Response } from "express";
-import createUser from "../../prisma/user/create-user";
+import createUserValidator from "../../validators/user/create-user-validator";
 
-const createUserController = (req: Request, res: Response): Response => {
+const createUserController = (req: Request, res: Response) => {
   const { name } = req.body
 
-  createUser(name)
-
-  return res.status(201).send()
+  createUserValidator(name, res)
 }
 
 export default createUserController

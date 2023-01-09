@@ -1,13 +1,11 @@
 import { Request, Response } from "express"
-import createTodo from "../../prisma/todo/create-todo"
+import createTodoValidator from "../../validators/todo/create-todo-validator"
 
-const createTodoController = (req: Request, res: Response): Response => {
+const createTodoController = (req: Request, res: Response) => {
   const { userId } = req.params
   const { description } = req.body
 
-  createTodo(description, userId)
-
-  return res.status(201).send()
+  createTodoValidator(description, userId, res)
 }
 
 export default createTodoController

@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import listUser from "../../prisma/user/list-user";
+import listUserValidator from "../../validators/user/list-user-validator";
 
-const listUserController = async (req: Request, res: Response): Promise<Response> => {
+const listUserController = async (req: Request, res: Response) => {
   const { name } = req.params
 
-  const user = await listUser(name)
+  const user = await listUser(name.toLocaleLowerCase())
 
-  return res.status(200).json(user)
+  listUserValidator(user, res)
 }
 
 export default listUserController
