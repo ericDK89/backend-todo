@@ -1,33 +1,33 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Todo Project - Express & Prisma",
-    "description": "This is an API to create user and todos",
+    "title": "Projeto TODO - Express & Prisma",
+    "description": "Esse é um projeto utilizando Express e Prisma para criação de um TODO",
     "version": "1.0.0",
     "contact": {
+      "name": "Eric Macedo Gomes",
+      "url": "https://www.linkedin.com/in/eric-macedo-dev/",
       "email": "ericthr42@gmail.com"
     }
   },
   "paths": {
     "/user/create": {
       "post": {
-        "tags": ["User"],
-        "summary": "Create a new user",
-        "description": "To create a new user, add the 'name' field in the request body.",
+        "tags": ["Usurário"],
+        "summary": "Criando um novo usuário",
+        "description": "Para criar um novo usuário adicione o campo 'name' no request body.",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "required": ["name"],
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
+                "$ref": "#/components/schemas/Usuário"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Username"
                   }
-                },
-                "example": {
-                  "name": "Username123"
                 }
               }
             }
@@ -35,18 +35,47 @@
         },
         "responses": {
           "201": {
-            "description": "Successfully created user"
+            "description": "Usuário criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Usuário"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O nome não pode estar vazio"
           }
         }
       }
     },
-    "/user/list/:username": {
+    "/user/list/{name}": {
       "get": {
-        "tags": ["User"],
-        "summary": "Get user by username",
-        "description": "To list an user you need to add the username at the params",
+        "tags": ["Usurário"],
+        "summary": "Buscar o usuário pelo 'name'",
+        "description": "Para buscar o usuário é preciso adicionar o 'name' em req params",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Nome do usuário para a busca",
+            "required": true
+          }
+        ],
         "responses": {
-          "200": {}
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Usuário"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -57,5 +86,17 @@
         "description": "To create a todo you need to add a description at the body"
       }
     }
-  }
+  },
+  "components": {
+    "schemas": {
+      "Usuário": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  } 
 }
