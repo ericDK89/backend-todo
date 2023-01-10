@@ -34,6 +34,7 @@ Para acessar o swagger, incie o projeto com o npm run dev e acesse o link http:/
 ## 🟣 Prisma Studio
 
 Para acessar o banco de dados do Prisma Studio de o comando: 
+```bash
 $ npx prisma studio
 ```
 
