@@ -33,5 +33,3 @@ Projeto de um TODO, com um CRUD básico. Onde é possível criar, listar, atuali
 o Prisma com o SQLite como banco de dados.
 
 Feito por Eric Macedo 🌌  [LinkedIn](https://www.linkedin.com/in/eric-macedo-dev/)
-
-[⬆ Voltar ao topo](Backend TODO)<br>
