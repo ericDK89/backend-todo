@@ -27,9 +27,17 @@ $ npm i
 $ npm run dev
 ```
 
-## 💻 SwaggerUI
+## ❇️ SwaggerUI
 
 Para acessar o swagger, incie o projeto com o npm run dev e acesse o link http://localhost:3333/api-docs/#/
+
+## 🟣 Prisma Studio
+
+Para acessar o banco de dados do Prisma Studio de o comando: 
+$ npx prisma studio
+```
+
+![image](https://user-images.githubusercontent.com/68076508/211666636-a69458db-a6b0-47dc-9033-5b87e5ae00be.png)
 
 ## 💻 Projeto
 
