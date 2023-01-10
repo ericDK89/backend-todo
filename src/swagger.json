@@ -79,11 +79,184 @@
         }
       }
     },
-    "/todo/create/:id": {
+    "/todo/create/{userId}": {
       "post": {
         "tags": ["Todo"],
-        "summary": "Create a todo for a user",
-        "description": "To create a todo you need to add a description at the body"
+        "summary": "Crie um TODO para o usuário",
+        "description": "Para criar um TODO é preciso adicionar uma descrição e o id do usuário no req params",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Todo"
+              },
+              "examples": {
+                "todo": {
+                  "value": {
+                    "description": "Iniciar uma tarefa."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Todo criado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/todo/list-all-todos/{userId}": {
+      "get": {
+        "tags": ["Todo"],
+        "summary": "Exibir TODOS do usuário.",
+        "description": "Para exibir todos os TODOS de um usuário é necessário adicionar o ID do usuário.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TODO(s) exibidos com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/todo/done/{userId}/{id}": {
+      "patch": {
+        "tags": ["Todo"],
+        "summary": "Alterar done para true ou false.",
+        "description": "Para alterar o done para true ou false adicione o userID e o ID no req params.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do TODO",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Done do TODO alterado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/todo/description/{id}": {
+      "patch": {
+        "tags": ["Todo"],
+        "summary": "Alterar descrição do todo.",
+        "description": "Para alterar a descrição adicione o ID no req params.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do TODO",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Todo"
+              },
+              "examples": {
+                "todo": {
+                  "value": {
+                    "description": "Alterar a descrição de uma tarefa."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Descrição do TODO alterada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/todo/delete/{id}": {
+      "delete": {
+        "tags": ["Todo"],
+        "summary": "Deletar todo.",
+        "description": "Para deletar um TODO adicione o ID no req params.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do TODO",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "TODO deletado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -94,6 +267,17 @@
         "properties": {
           "name": {
             "type": "string"
+          }
+        }
+      },
+      "Todo": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "done": {
+            "type": "boolean"
           }
         }
       }
