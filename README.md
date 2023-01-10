@@ -27,6 +27,10 @@ $ npm i
 $ npm run dev
 ```
 
+## 💻 SwaggerUI
+
+Para acessar o swagger, incie o projeto com o npm run dev e acesse o link http://localhost:3333/api-docs/#/
+
 ## 💻 Projeto
 
 Projeto de um TODO, com um CRUD básico. Onde é possível criar, listar, atualizar e deletar os TODOS, além de ser possível criar e listar usúarios. Foi utilizado
